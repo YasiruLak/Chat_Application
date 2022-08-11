@@ -1,0 +1,36 @@
+
+
+.interface{
+    -fx-hgap: 20px;
+    -fx-padding: 40px;
+
+    -fx-background-color: white;
+    /*-fx-background-radius: 50px;*/
+
+    /*-fx-border-radius: 50px;*/
+    /*!*-fx-border-width: 5px;*!*/
+    /*-fx-border-color: black;*/
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+.chatTyping{
+    /*-fx-background-color: #003e47;*/
+    /*-fx-background-radius: 50px;*/
+}
+
+.liner-navigate {
+    -fx-background-color: #55efc4;
+    /*-fx-background-radius: 30px;*/
+}
+
+.mainImg{
+    -fx-background-radius:50%;
+    -fx-background-image:url("../assests/images/Main.JPG");
+    -fx-background-repeat:no-repeat
+}
+
+.typingField{
+    -fx-border-radius:50px;
+    -fx-background-radius: 50px;
+
+}
