@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +18,7 @@
          <children>
             <AnchorPane layoutX="8.0" layoutY="10.0" prefHeight="40.0" prefWidth="424.0" style="-fx-background-color: #00765E;" styleClass="typingField">
                <children>
-                  <JFXTextField focusColor="WHITE" layoutX="70.0" layoutY="7.0" prefHeight="25.0" prefWidth="267.0" unFocusColor="WHITE">
+                  <JFXTextField fx:id="txtType" focusColor="WHITE" layoutX="70.0" layoutY="7.0" prefHeight="25.0" prefWidth="267.0" unFocusColor="WHITE">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor></JFXTextField>
@@ -43,18 +44,21 @@
                      </cursor></FontAwesomeIconView>
                </children>
             </AnchorPane>
-            <JFXButton layoutX="457.0" layoutY="12.0" prefHeight="40.0" prefWidth="60.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00765e">
+            <JFXButton fx:id="btnSend" alignment="CENTER" contentDisplay="CENTER" layoutX="457.0" layoutY="12.0" onAction="#sendMsgOnAction" prefHeight="40.0" prefWidth="60.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
-            <FontAwesomeIconView fill="WHITE" glyphName="PAPER_PLANE" layoutX="476.0" layoutY="39.0" size="20" wrappingWidth="28.0">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></FontAwesomeIconView>
+               </cursor>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PAPER_PLANE" size="20" wrappingWidth="22.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontAwesomeIconView>
+               </graphic></JFXButton>
          </children></AnchorPane>
       <AnchorPane layoutX="230.0" prefHeight="54.0" prefWidth="530.0" style="-fx-background-color: #00B894;" styleClass="chatTyping">
          <children>
-            <FontAwesomeIconView fill="WHITE" glyphName="ELLIPSIS_V" layoutX="486.0" layoutY="38.0" size="30" text="" wrappingWidth="15.999989807605743">
+            <FontAwesomeIconView fill="WHITE" glyphName="ELLIPSIS_V" layoutX="396.0" layoutY="39.0" size="30" text="" wrappingWidth="9.999990731477737">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></FontAwesomeIconView>
@@ -67,12 +71,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor></FontAwesomeIconView>
             <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="38.0" layoutY="33.0" size="25" wrappingWidth="28.0" />
-            <Text fill="WHITE" layoutX="90.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group">
+            <Text fx:id="lblClientName" fill="WHITE" layoutX="90.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
             <Text fill="WHITE" layoutX="90.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tap here for group info" />
+            <ComboBox fx:id="cmbInfo" layoutX="357.0" layoutY="13.0" opacity="0.0" prefHeight="31.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
          </children></AnchorPane>
       <AnchorPane prefHeight="600.0" prefWidth="230.0" style="-fx-background-color: #00B894;" styleClass="liner-navigate">
          <children>
@@ -124,6 +129,6 @@
                </cursor>
             </FontAwesomeIconView>
          </children></AnchorPane>
-      <JFXTextArea focusColor="WHITE" layoutX="245.0" layoutY="65.0" prefHeight="460.0" prefWidth="500.0" unFocusColor="WHITE" />
+      <JFXTextArea fx:id="txtChatType" focusColor="WHITE" layoutX="245.0" layoutY="65.0" prefHeight="460.0" prefWidth="500.0" unFocusColor="WHITE" />
    </children>
 </AnchorPane>

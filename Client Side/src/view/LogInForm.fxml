@@ -2,13 +2,13 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="743.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogInFormController">
+<AnchorPane fx:id="loginContext" prefHeight="400.0" prefWidth="743.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LogInFormController">
    <children>
       <ImageView fitHeight="511.0" fitWidth="400.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -30,5 +30,6 @@
             <Image url="@../assests/images/Logo.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblError" layoutX="460.0" layoutY="353.0" prefHeight="17.0" prefWidth="240.0" />
    </children>
 </AnchorPane>

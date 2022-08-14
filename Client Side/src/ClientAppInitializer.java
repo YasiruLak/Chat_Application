@@ -20,6 +20,7 @@ public class ClientAppInitializer extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("view/LogInForm.fxml"))));
+        primaryStage.setTitle("Play Tech Chat");
         primaryStage.show();
     }
 }
