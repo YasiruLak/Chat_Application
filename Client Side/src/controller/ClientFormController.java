@@ -3,7 +3,6 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,7 +31,6 @@ public class ClientFormController extends Thread implements Initializable {
     public Text lblClientName;
     public JFXButton btnSend;
     public JFXTextArea txtChatType;
-    
     public JFXTextField txtType;
     public ComboBox<String> cmbInfo;
 
@@ -67,14 +65,14 @@ public class ClientFormController extends Thread implements Initializable {
                 String[] tokens = msg.split(" ");
                 String cmd = tokens[0];
                 System.out.println(cmd);
-                StringBuilder fulmsg = new StringBuilder();
+                StringBuilder fullMsg = new StringBuilder();
                 for(int i = 1; i < tokens.length; i++) {
-                    fulmsg.append(tokens[i]);
+                    fullMsg.append(tokens[i]);
                 }
-                System.out.println(fulmsg);
+                System.out.println(fullMsg);
                 if (cmd.equalsIgnoreCase(lblClientName.getText() + ":")) {
                     continue;
-                }else if(fulmsg.toString().equalsIgnoreCase("Bye")) {
+                }else if(fullMsg.toString().equalsIgnoreCase("Bye")) {
                     break;
                 }
                 txtChatType.appendText(msg + "\n\n");

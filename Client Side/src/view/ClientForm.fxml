@@ -22,26 +22,39 @@
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor></JFXTextField>
-                  <JFXButton layoutX="378.0" prefHeight="40.0" prefWidth="53.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00765e">
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="378.0" prefHeight="45.0" prefWidth="53.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></JFXButton>
-                  <JFXButton layoutX="336.0" layoutY="3.0" prefHeight="40.0" prefWidth="42.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00765e">
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CAMERA" size="20" wrappingWidth="23.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </FontAwesomeIconView>
+                     </graphic></JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="2.0" prefHeight="40.0" prefWidth="42.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></JFXButton>
-                  <FontAwesomeIconView fill="WHITE" glyphName="CAMERA" layoutX="387.0" layoutY="29.0" size="20" wrappingWidth="28.0">
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="PAPERCLIP" size="25" wrappingWidth="22.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </FontAwesomeIconView>
+                     </graphic></JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="60.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></FontAwesomeIconView>
-                  <JFXButton layoutY="5.0" prefHeight="40.0" prefWidth="60.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00765e">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></JFXButton>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PAPERCLIP" layoutX="348.0" layoutY="30.0" size="25" wrappingWidth="28.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></FontAwesomeIconView>
+                     </cursor>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="LAUGH" size="25" wrappingWidth="25.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </FontAwesomeIconView>
+                     </graphic></JFXButton>
                </children>
             </AnchorPane>
             <JFXButton fx:id="btnSend" alignment="CENTER" contentDisplay="CENTER" layoutX="457.0" layoutY="12.0" onAction="#sendMsgOnAction" prefHeight="40.0" prefWidth="60.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
@@ -71,7 +84,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor></FontAwesomeIconView>
             <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="38.0" layoutY="33.0" size="25" wrappingWidth="28.0" />
-            <Text fx:id="lblClientName" fill="WHITE" layoutX="90.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group">
+            <Text fill="WHITE" layoutX="90.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group">
                <font>
                   <Font size="22.0" />
                </font>
@@ -116,18 +129,13 @@
                         <Image url="@../assests/images/Main.JPG" />
                      </image>
                   </ImageView>
-                  <Text fill="WHITE" layoutX="75.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yasiru">
+                  <Text fx:id="lblClientName" fill="WHITE" layoutX="75.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yasiru">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <FontAwesomeIconView fill="WHITE" glyphName="EMOJI" layoutX="116.0" layoutY="363.0" size="25" wrappingWidth="28.0">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </FontAwesomeIconView>
          </children></AnchorPane>
       <JFXTextArea fx:id="txtChatType" focusColor="WHITE" layoutX="245.0" layoutY="65.0" prefHeight="460.0" prefWidth="500.0" unFocusColor="WHITE" />
    </children>
