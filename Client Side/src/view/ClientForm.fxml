@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -18,11 +19,11 @@
          <children>
             <AnchorPane layoutX="8.0" layoutY="10.0" prefHeight="40.0" prefWidth="424.0" style="-fx-background-color: #00765E;" styleClass="typingField">
                <children>
-                  <JFXTextField fx:id="txtType" focusColor="WHITE" layoutX="70.0" layoutY="7.0" prefHeight="25.0" prefWidth="267.0" unFocusColor="WHITE">
+                  <JFXTextField fx:id="txtType" focusColor="WHITE" layoutX="63.0" layoutY="7.0" prefHeight="25.0" prefWidth="309.0" unFocusColor="WHITE">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor></JFXTextField>
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="378.0" prefHeight="45.0" prefWidth="53.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
+                  <JFXButton fx:id="btnImage" alignment="CENTER" contentDisplay="CENTER" layoutX="378.0" onAction="#sendImageOnAction" prefHeight="45.0" prefWidth="53.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -33,23 +34,12 @@
                            </cursor>
                         </FontAwesomeIconView>
                      </graphic></JFXButton>
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="341.0" layoutY="2.0" prefHeight="40.0" prefWidth="42.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
+                  <JFXButton fx:id="btnEmoji" alignment="CENTER" contentDisplay="CENTER" onAction="#sendEmojiOnAction" prefHeight="45.0" prefWidth="60.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="PAPERCLIP" size="25" wrappingWidth="22.0">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </FontAwesomeIconView>
-                     </graphic></JFXButton>
-                  <JFXButton alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="60.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="LAUGH" size="25" wrappingWidth="25.0">
+                        <FontAwesomeIconView fill="WHITE" glyphName="PAPERCLIP" size="25" wrappingWidth="25.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -71,11 +61,11 @@
          </children></AnchorPane>
       <AnchorPane layoutX="230.0" prefHeight="54.0" prefWidth="530.0" style="-fx-background-color: #00B894;" styleClass="chatTyping">
          <children>
-            <FontAwesomeIconView fill="WHITE" glyphName="ELLIPSIS_V" layoutX="396.0" layoutY="39.0" size="30" text="" wrappingWidth="9.999990731477737">
+            <FontAwesomeIconView fill="WHITE" glyphName="ELLIPSIS_V" layoutX="485.0" layoutY="39.0" size="30" text="" wrappingWidth="9.999990731477737">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></FontAwesomeIconView>
-            <FontAwesomeIconView fill="WHITE" glyphName="PHONE" layoutX="440.0" layoutY="38.0" size="30" wrappingWidth="35.0">
+            <FontAwesomeIconView fill="WHITE" glyphName="PHONE" layoutX="435.0" layoutY="38.0" size="30" wrappingWidth="28.00000534951687">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></FontAwesomeIconView>
@@ -84,13 +74,13 @@
                   <Cursor fx:constant="HAND" />
                </cursor></FontAwesomeIconView>
             <FontAwesomeIconView fill="WHITE" glyphName="USERS" layoutX="38.0" layoutY="33.0" size="25" wrappingWidth="28.0" />
-            <Text fill="WHITE" layoutX="90.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Group">
+            <Text fill="WHITE" layoutX="90.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Play Tech">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
             <Text fill="WHITE" layoutX="90.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tap here for group info" />
-            <ComboBox fx:id="cmbInfo" layoutX="357.0" layoutY="13.0" opacity="0.0" prefHeight="31.0" prefWidth="61.0" style="-fx-background-color: transparent;" />
+            <ComboBox fx:id="cmbInfo" layoutX="473.0" layoutY="12.0" opacity="0.0" prefHeight="31.0" prefWidth="35.0" style="-fx-background-color: transparent;" />
          </children></AnchorPane>
       <AnchorPane prefHeight="600.0" prefWidth="230.0" style="-fx-background-color: #00B894;" styleClass="liner-navigate">
          <children>
@@ -104,7 +94,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </FontAwesomeIconView>
-            <AnchorPane layoutX="6.0" layoutY="14.0" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #00765E;" styleClass="typingField">
+            <AnchorPane layoutX="7.0" layoutY="14.0" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #00765E;" styleClass="typingField">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="8.0" layoutY="20.0" size="14" wrappingWidth="9.999989807605743">
                      <cursor>
@@ -123,13 +113,12 @@
             </AnchorPane>
             <AnchorPane layoutY="53.0" prefHeight="60.0" prefWidth="230.0" style="-fx-background-color: #00765E;">
                <children>
-                  <Text fill="WHITE" layoutX="76.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tap here for group info" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="65.0" fitWidth="66.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../assests/images/Main.JPG" />
+                        <Image url="@../assests/images/avatar.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="lblClientName" fill="WHITE" layoutX="75.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yasiru">
+                  <Text fx:id="lblClientName" fill="WHITE" layoutX="96.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -137,6 +126,10 @@
                </children>
             </AnchorPane>
          </children></AnchorPane>
-      <JFXTextArea fx:id="txtChatType" focusColor="WHITE" layoutX="245.0" layoutY="65.0" prefHeight="460.0" prefWidth="500.0" unFocusColor="WHITE" />
+      <ScrollPane fx:id="scrollPane" layoutX="230.0" layoutY="54.0" prefHeight="490.0" prefWidth="530.0">
+         <content>
+            <VBox fx:id="messageText" prefHeight="486.0" prefWidth="526.0" />
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

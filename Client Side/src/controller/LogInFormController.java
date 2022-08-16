@@ -31,9 +31,10 @@ public class LogInFormController {
             lblError.setText("All fields are required.!");
             lblError.setStyle("-fx-text-fill: red");
         }else {
+            ClientFormController.userName = txtUserName.getText();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ClientForm.fxml"));
             Parent load = loader.load();
-            ClientFormController controller=loader.<ClientFormController>getController();
+            controller.ClientFormController controller=loader.<controller.ClientFormController>getController();
             controller.setData(txtUserName.getText());
             Stage window = (Stage) loginContext.getScene().getWindow();
             window.setScene(new Scene(load));
