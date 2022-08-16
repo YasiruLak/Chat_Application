@@ -61,6 +61,7 @@ public class ServerAppInitializer {
     }
 
     public static void main(String[] args) {
+
         ServerSocket serverSocket;
         Socket socket;
         try {

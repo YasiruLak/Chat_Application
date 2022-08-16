@@ -11,10 +11,12 @@ import javafx.stage.Stage;
  * @year : 2022
  * @since : 0.1.0
  **/
+
 public class ClientAppInitializer extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
     }
 
     @Override
