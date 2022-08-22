@@ -34,17 +34,11 @@
                            </cursor>
                         </FontAwesomeIconView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="btnEmoji" alignment="CENTER" contentDisplay="CENTER" onAction="#sendEmojiOnAction" prefHeight="45.0" prefWidth="60.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
+                  <FontAwesomeIconView fx:id="imgEmoji" fill="WHITE" glyphName="PAPERCLIP" layoutX="17.0" layoutY="31.0" onMouseClicked="#chooseEmojiOnAction" size="25" wrappingWidth="25.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
-                     <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="PAPERCLIP" size="25" wrappingWidth="25.0">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </FontAwesomeIconView>
-                     </graphic></JFXButton>
+                  </FontAwesomeIconView>
                </children>
             </AnchorPane>
             <JFXButton fx:id="btnSend" alignment="CENTER" contentDisplay="CENTER" layoutX="457.0" layoutY="12.0" onAction="#sendMsgOnAction" prefHeight="40.0" prefWidth="60.0" style="-fx-background-color: #00765E;" styleClass="typingField" textFill="#00755c00">
@@ -125,7 +119,42 @@
                   </Text>
                </children>
             </AnchorPane>
-         </children></AnchorPane>
+            <AnchorPane fx:id="emojiBox" layoutX="6.0" layoutY="376.0" prefHeight="217.0" prefWidth="217.0" style="-fx-background-color: #00B894;" visible="false">
+               <children>
+                  <ImageView fx:id="emoji1" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#sendEmojiOnMouseClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/emojis/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="emoji2" fitHeight="35.0" fitWidth="35.0" layoutX="35.0" onMouseClicked="#sendEmojiOnMouseClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/emojis/2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="emoji3" fitHeight="35.0" fitWidth="35.0" layoutX="70.0" onMouseClicked="#sendEmojiOnMouseClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/emojis/3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="emoji4" fitHeight="35.0" fitWidth="35.0" layoutX="105.0" onMouseClicked="#sendEmojiOnMouseClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/emojis/4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="emoji5" fitHeight="35.0" fitWidth="35.0" layoutX="140.0" onMouseClicked="#sendEmojiOnMouseClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/emojis/5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="emoji6" fitHeight="35.0" fitWidth="35.0" layoutX="175.0" onMouseClicked="#sendEmojiOnMouseClick" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/emojis/6.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
       <ScrollPane fx:id="scrollPane" layoutX="230.0" layoutY="54.0" prefHeight="490.0" prefWidth="530.0">
          <content>
             <VBox fx:id="messageText" prefHeight="486.0" prefWidth="526.0" />

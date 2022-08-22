@@ -3,6 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,6 +29,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 /**
@@ -47,13 +50,22 @@ public class ClientFormController{
     public ComboBox<String> cmbInfo;
     public ScrollPane scrollPane;
     public VBox messageText;
-    public JFXButton btnEmoji;
     public JFXButton btnImage;
     public boolean saveControl = false;
+    public AnchorPane emojiBox;
+    public ImageView emoji1;
+    public ImageView emoji2;
+    public ImageView emoji3;
+    public ImageView emoji4;
+    public ImageView emoji5;
+    public ImageView emoji6;
+    public FontAwesomeIconView imgEmoji;
 
     BufferedReader reader;
     BufferedWriter writer;
+//    PrintWriter printWriter;
     Socket socket=null;
+    String []ePath=new String[6];
 
     public void setData(String name) {
         lblClientName.setText(name);
@@ -68,7 +80,7 @@ public class ClientFormController{
         Text text = new Text("Me: " + msg);
         TextFlow textFlow = new TextFlow(text);
 
-        textFlow.setStyle("-fx-font-weight: bold;" + "-fx-background-color:#8b49d2;" + "-fx-background-radius:10px");
+        textFlow.setStyle("-fx-font-weight: bold;" + "-fx-background-color:#0abde3;" + "-fx-background-radius:10px");
 
         textFlow.setPadding(new Insets(5, 10, 5, 10));
         text.setFill(Color.color(1, 1, 1, 1));
@@ -84,7 +96,7 @@ public class ClientFormController{
 
     public void initialize() {
         try {
-            this.socket = new Socket("localhost", 6000);
+            this.socket = new Socket("localhost", 7000);
             //System.out.println("Socket is connected with server!");
             this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -92,12 +104,27 @@ public class ClientFormController{
             this.writer.newLine();
             this.writer.flush();
 
+            {
+                for (int i = 0; i < ePath.length; i++) {
+                    ePath[i] = "assests/emojis/" + (i + 1) + ".png";
+                    System.out.println(ePath[i]);
+
+                }
+                System.out.println("Emojis path set to array");
+            }
+
+
             new Thread(() -> {
                 String msg;
                 try {
                     while (true) {
                         msg = reader.readLine();
-//                        System.out.println("Message :"+msg);
+                        String[] tokens = msg.split(" ");
+                        String cmd = tokens[0];
+                        StringBuilder fulMsg = new StringBuilder();
+                        for (int i = 1; i < tokens.length; i++) {
+                            fulMsg.append(tokens[i]);
+                        }
 
                         if (msg.startsWith("IMG")) {
 
@@ -121,7 +148,7 @@ public class ClientFormController{
                             //Setting image to the image view
                             imageView.setImage(new Image(new File(split[1]).toURI().toString()));
                             //Setting the image view parameters
-                            imageView.setFitWidth(300);
+                            imageView.setFitWidth(100);
                             imageView.setPreserveRatio(true);
 
                             hBox.getChildren().add(textFlow1);
@@ -133,6 +160,23 @@ public class ClientFormController{
                                     messageText.getChildren().add(hBox);
                                 }
                             });
+
+                        }else if (fulMsg.toString().startsWith("assests/emojis/") ) {
+                            HBox hBox = new HBox();
+                            System.out.println("Emoji path "+fulMsg);
+                            hBox.setAlignment(Pos.CENTER_LEFT);
+                            hBox.setPadding(new Insets(5, 10, 5, 5));
+                            Text text = new Text(cmd + " ");
+                            ImageView imageView = new ImageView();
+                            Image image = new Image(String.valueOf(fulMsg));
+                            imageView.setImage(image);
+                            imageView.setFitWidth(50);
+                            imageView.setFitHeight(50);
+                            TextFlow textFlow = new TextFlow(text, imageView);
+                            VBox vBox = new VBox(textFlow);
+                            vBox.setAlignment(Pos.CENTER_LEFT);
+                            vBox.setPadding(new Insets(5, 10, 5, 5));
+                            hBox.getChildren().add(vBox);
 
                         }else {
                             HBox hBox = new HBox();
@@ -168,9 +212,6 @@ public class ClientFormController{
     }
 
 
-    public void sendEmojiOnAction(ActionEvent actionEvent) {
-    }
-
     public void sendImageOnAction(ActionEvent actionEvent) throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a Image");
@@ -186,7 +227,7 @@ public class ClientFormController{
 
         Text text = new Text("Me : ");
         TextFlow textFlow = new TextFlow(text);
-        textFlow.setStyle("-fx-font-weight: bold;" + "-fx-background-color:#cf8bf6;");
+        textFlow.setStyle("-fx-font-weight: bold;" + "-fx-background-color:#0abde3;");
         textFlow.setPadding(new Insets(5, 10, 5, 10));
         text.setFill(Color.color(1, 1, 1, 1));
 
@@ -195,12 +236,153 @@ public class ClientFormController{
         //Setting image to the image view
         imageView.setImage(new Image(new File(file.getPath()).toURI().toString()));
         //Setting the image view parameters
-        imageView.setFitWidth(300);
+        imageView.setFitWidth(100);
         imageView.setPreserveRatio(true);
 
         hBox.getChildren().add(textFlow);
         hBox.getChildren().add(imageView);
 
         messageText.getChildren().add(hBox);
+    }
+
+    public void sendEmojiOnMouseClick(MouseEvent mouseEvent) throws IOException {
+        if (mouseEvent.getSource() instanceof ImageView) {
+            ImageView icon = (ImageView) mouseEvent.getSource();
+            switch (icon.getId()) {
+                case "emoji1":
+                    byte[] emojiBytes1 = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x98, (byte) 0x81};
+                    String emojiAsString1 = new String(emojiBytes1, StandardCharsets.UTF_8);
+                    if (txtType.getText().equalsIgnoreCase("") || txtType.getText().equalsIgnoreCase(null)) {
+                        ImageView imageView = new ImageView();
+                        Image image = new Image(ePath[0]);
+                        imageView.setImage(image);
+                        imageView.setFitWidth(35);
+                        imageView.setFitHeight(35);
+                        VBox vBox = new VBox(imageView);
+                        vBox.setAlignment(Pos.CENTER_RIGHT);
+                        vBox.setPadding(new Insets(5, 10, 5, 5));
+                        messageText.getChildren().add(vBox);
+                        writer.write(userName + ": " + ePath[0]);
+                        emojiBox.setVisible(false);
+                        imgEmoji.setVisible(true);
+                    } else {
+                        txtType.appendText(emojiAsString1);
+
+                    }
+                    break;
+                case "emoji2":
+                    byte[] emojiBytes2 = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x98, (byte) 0x82};
+                    String emojiAsString2 = new String(emojiBytes2, StandardCharsets.UTF_8);
+
+                    if (txtType.getText().equalsIgnoreCase("") || txtType.getText().equalsIgnoreCase(null)) {
+                        ImageView imageView = new ImageView();
+                        Image image = new Image(ePath[1]);
+                        imageView.setImage(image);
+                        imageView.setFitWidth(35);
+                        imageView.setFitHeight(35);
+                        VBox vBox = new VBox(imageView);
+                        vBox.setAlignment(Pos.CENTER_RIGHT);
+                        vBox.setPadding(new Insets(5, 10, 5, 5));
+                        messageText.getChildren().add(vBox);
+                        writer.write(userName + ": " + ePath[1]);
+                        emojiBox.setVisible(false);
+                        imgEmoji.setVisible(true);
+                    } else {
+                        txtType.appendText(emojiAsString2);
+                    }
+                    break;
+                case "emoji3":
+                    byte[] emojiBytes3 = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x98, (byte) 0x83};
+                    String emojiAsString3 = new String(emojiBytes3, StandardCharsets.UTF_8);
+
+                    if (txtType.getText().equalsIgnoreCase("") || txtType.getText().equalsIgnoreCase(null)) {
+                        ImageView imageView = new ImageView();
+                        Image image = new Image(ePath[2]);
+                        imageView.setImage(image);
+                        imageView.setFitWidth(35);
+                        imageView.setFitHeight(35);
+                        VBox vBox = new VBox(imageView);
+                        vBox.setAlignment(Pos.CENTER_RIGHT);
+                        vBox.setPadding(new Insets(5, 10, 5, 5));
+                        messageText.getChildren().add(vBox);
+                        writer.write(userName + ": " + ePath[2]);
+                        emojiBox.setVisible(false);
+                        imgEmoji.setVisible(true);
+                    } else {
+                        txtType.appendText(emojiAsString3);
+                    }
+                    break;
+                case "emoji4":
+                    byte[] emojiBytes4 = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x98, (byte) 0x84};
+                    String emojiAsString4 = new String(emojiBytes4, StandardCharsets.UTF_8);
+
+                    if (txtType.getText().equalsIgnoreCase("") || txtType.getText().equalsIgnoreCase(null)) {
+                        ImageView imageView = new ImageView();
+                        Image image = new Image(ePath[3]);
+                        imageView.setImage(image);
+                        imageView.setFitWidth(35);
+                        imageView.setFitHeight(35);
+                        VBox vBox = new VBox(imageView);
+                        vBox.setAlignment(Pos.CENTER_RIGHT);
+                        vBox.setPadding(new Insets(5, 10, 5, 5));
+                        messageText.getChildren().add(vBox);
+                        writer.write(userName + ": " + ePath[3]);
+                        emojiBox.setVisible(false);
+                        imgEmoji.setVisible(true);
+                    } else {
+                        txtType.appendText(emojiAsString4);
+                    }
+                    break;
+                case "emoji5":
+                    byte[] emojiBytes5 = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x98, (byte) 0x85};
+                    String emojiAsString5 = new String(emojiBytes5, StandardCharsets.UTF_8);
+                    if (txtType.getText().equalsIgnoreCase("") || txtType.getText().equalsIgnoreCase(null)) {
+                        ImageView imageView = new ImageView();
+                        Image image = new Image(ePath[4]);
+                        imageView.setImage(image);
+                        imageView.setFitWidth(35);
+                        imageView.setFitHeight(35);
+                        VBox vBox = new VBox(imageView);
+                        vBox.setAlignment(Pos.CENTER_RIGHT);
+                        vBox.setPadding(new Insets(5, 10, 5, 5));
+                        messageText.getChildren().add(vBox);
+                        writer.write(userName + ": " + ePath[4]);
+                        emojiBox.setVisible(false);
+                        imgEmoji.setVisible(true);
+                    } else {
+                        txtType.appendText(emojiAsString5);
+                    }
+
+                    break;
+                case "emoji6":
+                    byte[] emojiBytes6 = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x98, (byte) 0x86};
+                    String emojiAsString6 = new String(emojiBytes6, StandardCharsets.UTF_8);
+                    if (txtType.getText().equalsIgnoreCase("") || txtType.getText().equalsIgnoreCase(null)) {
+                        ImageView imageView = new ImageView();
+                        Image image = new Image(ePath[5]);
+                        imageView.setImage(image);
+                        imageView.setFitWidth(35);
+                        imageView.setFitHeight(35);
+                        VBox vBox = new VBox(imageView);
+                        vBox.setAlignment(Pos.CENTER_RIGHT);
+                        vBox.setPadding(new Insets(5, 10, 5, 5));
+                        messageText.getChildren().add(vBox);
+                        writer.write(userName + ": " + ePath[5]);
+                        emojiBox.setVisible(false);
+                        imgEmoji.setVisible(true);
+                    } else {
+                        txtType.appendText(emojiAsString6);
+                    }
+                    break;
+            }
+        }
+    }
+
+    public void chooseEmojiOnAction(MouseEvent mouseEvent) {
+        if (emojiBox.isVisible()){
+            emojiBox.setVisible(false);
+        } else {
+            emojiBox.setVisible(true);
+        }
     }
 }

@@ -23,7 +23,7 @@ public class ServerAppInitializer {
         ServerSocket serverSocket;
         Socket socket;
         try {
-            serverSocket = new ServerSocket(6000);
+            serverSocket = new ServerSocket(7000);
             while(true) {
                 System.out.println("Waiting for clients...");
                 socket = serverSocket.accept();
